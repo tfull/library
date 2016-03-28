@@ -1,5 +1,7 @@
 #include "String.h"
+#include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
 
 char charAt(String *s, int i){
     if(i < 0 || i >= s->size){
@@ -63,4 +65,31 @@ void String_copy(String *s, char *cs){
     }
 
     cs[i] = '\0';
+}
+
+void String_chomp(String *s){
+    if(s->size > 0 && s->data[s->size - 1] == '\n'){
+        s->size -= 1;
+    }
+}
+
+void String_stripL(String *s){
+    int b = 0;
+    int i;
+
+    while(b <= s->size && isspace(s->data[b])){
+        b++;
+    }
+
+    for(i = 0; i < s->size - b; i++){
+        s->data[i] = s->data[i + b];
+    }
+
+    s->size -= b;
+}
+
+void String_stripR(String *s){
+    while(s->size > 0 && isspace(s->data[s->size - 1])){
+        s->size--;
+    }
 }

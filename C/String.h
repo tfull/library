@@ -9,10 +9,13 @@ typedef struct{
 
 void String_append(String*, char);
 char String_charAt(String*, int);
+void String_chomp(String*);
 void String_copy(String*, char*);
 void String_free(String*);
 String *String_new(void);
 String *String_readLine(void);
 int String_size(String*);
+void String_stripL(String*);
+void String_stripR(String*);
 
 #endif
