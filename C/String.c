@@ -9,7 +9,7 @@ char charAt(String *s, int i){
     }
 }
 
-String String_append(String *s, char c){
+void String_append(String *s, char c){
     if(s->size == s->capacity){
         char *tmp;
         int i;
@@ -42,7 +42,7 @@ String *String_readLine(void){
         String_append(s, c);
     }
 
-    s->append(s, c);
+    String_append(s, c);
     return s;
 }
 
@@ -53,4 +53,14 @@ void String_free(String *s){
 
 int String_size(String *s){
     return s->size;
+}
+
+void String_copy(String *s, char *cs){
+    int i;
+
+    for(i = 0; i < s->size; i++){
+        cs[i] = s->data[i];
+    }
+
+    cs[i] = '\0';
 }

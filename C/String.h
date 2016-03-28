@@ -9,6 +9,7 @@ typedef struct{
 
 void String_append(String*, char);
 char String_charAt(String*, int);
+void String_copy(String*, char*);
 void String_free(String*);
 String *String_new(void);
 String *String_readLine(void);
