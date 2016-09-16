@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-char charAt(String *s, int i){
+char String_charAt(String *s, int i){
     if(i < 0 || i >= s->size){
         return '\0';
     }else{
@@ -34,6 +34,7 @@ String *String_new(void){
     s->size = 0;
     s->capacity = 64;
     s->data = (char*)malloc(s->capacity);
+    return s;
 }
 
 String *String_readLine(void){
@@ -54,6 +55,10 @@ void String_free(String *s){
 }
 
 int String_size(String *s){
+    return s->size;
+}
+
+int String_length(String *s){
     return s->size;
 }
 

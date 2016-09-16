@@ -15,6 +15,7 @@ void String_free(String*);
 String *String_new(void);
 String *String_readLine(void);
 int String_size(String*);
+int String_length(String*);
 void String_stripL(String*);
 void String_stripR(String*);
 
