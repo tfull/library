@@ -22,6 +22,7 @@ int main(){
         return 0;
     }
 
+    printf("first: %c\n", String_at(line, 0));
     printf("center: %c\n", String_charAt(line, (size - 1) / 2));
 
     String_free(line);

@@ -8,6 +8,7 @@ typedef struct{
 }String;
 
 void String_append(String*, char);
+char String_at(String*, int);
 char String_charAt(String*, int);
 void String_chomp(String*);
 void String_copy(String*, char*);

@@ -3,6 +3,14 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+char String_at(String *s, int i){
+    if(i < 0 || i >= s->size){
+        return '\0';
+    }else{
+        return s->data[i];
+    }
+}
+
 char String_charAt(String *s, int i){
     if(i < 0 || i >= s->size){
         return '\0';
@@ -60,6 +68,18 @@ int String_size(String *s){
 
 int String_length(String *s){
     return s->size;
+}
+
+char *String_toCString(String *s){
+    char *cs;
+    
+    cs = (char *)malloc(sizeof(char) * (s->size + 1));
+    for(int i = 0; i < s->size; i++){
+        cs[i] = s->data[i];
+    }
+    cs[s->size] = '\0';
+
+    return cs;
 }
 
 void String_copy(String *s, char *cs){
