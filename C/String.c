@@ -19,7 +19,7 @@ char String_charAt(String *s, int i){
     }
 }
 
-void String_append(String *s, char c){
+void String_pushBack(String *s, char c){
     if(s->size == s->capacity){
         char *tmp;
         int i;
@@ -37,11 +37,70 @@ void String_append(String *s, char c){
     s->size += 1;
 }
 
+void String_append(String *s, String *t){
+    int capacity, size;
+    int slen = String_size(s);
+    int tlen = String_size(t);
+    int i;
+
+    capacity = s->capacity;
+    size = slen + tlen;
+    while(capacity < size){
+        capacity *= 2;
+        if(capacity < 0){
+            return;
+        }
+    }
+    if(capacity != s->capacity){
+        char *data = (char*)malloc(sizeof(char) * capacity);
+
+        for(i = 0; i < slen; i++){
+            data[i] = String_at(s, i);
+        }
+        for(i = 0; i < tlen; i++){
+            data[i + slen] = String_at(t, i);
+        }
+        free(s->data);
+        s->data = data;
+        s->size += tlen;
+    }else{
+        for(i = 0; i < tlen; i++){
+            s->data[i + slen] = String_at(t, i);
+            s->size += tlen;
+        }
+    }
+}
+
 String *String_new(void){
     String *s = (String*)malloc(sizeof(String));
     s->size = 0;
     s->capacity = 64;
-    s->data = (char*)malloc(s->capacity);
+    s->data = (char*)malloc(sizeof(char) * s->capacity);
+    return s;
+}
+
+String *String_load(char *cs){
+    String *s;
+    int capacity;
+    int i;
+
+    for(i = 0; cs[i] != '\0'; i++){
+    }
+
+    for(capacity = 64; capacity <= i; capacity *= 2){
+        if(capacity < 0){
+            return NULL;
+        }
+    }
+
+    s = (String*)malloc(sizeof(String));    
+    s->capacity = capacity;
+    s->size = i;
+    s->data = (char*)malloc(sizeof(char) * s->capacity);
+    for(i = 0; i < s->size; i++){
+        s->data[i] = cs[i];
+    }
+
     return s;
 }
 
@@ -50,10 +109,10 @@ String *String_readLine(void){
     String *s = String_new();
 
     while((c = getchar()) != '\n'){
-        String_append(s, c);
+        String_pushBack(s, c);
     }
 
-    String_append(s, c);
+    String_pushBack(s, c);
     return s;
 }
 
