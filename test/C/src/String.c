@@ -5,11 +5,15 @@
 int main(){
     String *line;
     String *appendix;
+    String *test;
     int i;
     int size;
     char *raw = (char*)"[appendix]";
+    char *hello = (char*)"Hello, world!";
     char *cs;
     char *ds;
+
+    test = String_load(hello);
 
     printf("input string: ");
     line = String_readLine();
@@ -28,6 +32,12 @@ int main(){
 
     printf("first: %c\n", String_at(line, 0));
     printf("center: %c\n", String_charAt(line, (size - 1) / 2));
+
+    if(String_equals(line, test)){
+        printf("Hello, world!: BINGO\n");
+    }else{
+        printf("Hello, world!: MISS\n");
+    }
 
     appendix = String_load(raw);
     for(i = 0; i < 20; i++){

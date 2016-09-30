@@ -71,6 +71,23 @@ void String_append(String *s, String *t){
     }
 }
 
+int String_equals(String *s, String *t){
+    int i;
+    int size;
+
+    size = s->size;
+
+    if(size != t->size){
+        return 0;
+    }
+    for(i = 0; i < size; i++){
+        if(s->data[i] != t->data[i]){
+            return 0;
+        }
+    }
+    return 1;
+}
+
 String *String_new(void){
     String *s = (String*)malloc(sizeof(String));
     s->size = 0;
