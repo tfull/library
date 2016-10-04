@@ -122,14 +122,18 @@ String *String_load(char *cs){
 }
 
 String *String_readLine(void){
+    int i;
     char c;
     String *s = String_new();
 
-    while((c = getchar()) != '\n'){
+    while((i = getchar()) != EOF){
+        c = (char)i;
         String_pushBack(s, c);
+        if(c == '\n'){
+            break;
+        }
     }
 
-    String_pushBack(s, c);
     return s;
 }
 
